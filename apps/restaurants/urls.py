@@ -1,18 +1,18 @@
-from django.urls import path 
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
 from apps.restaurants.views import (
-    RestaurantAPIView,
-    RestaurantRetrieveUpdateDeleteAPIView,
-    RestaurantTableAPIView,
-    RestaurantTableRestaurantRetrieveUpdateDeleteAPIView,
-    MenuItemAPIView,
-    MenuItemRetrieveUpdateDeleteAPIView
+    RestaurantViewSet,
+    RestaurantTableViewSet,
+    MenuItemViewSet,
+    TableBookingViewSet
 )
 
+router = DefaultRouter()
+router.register("", RestaurantViewSet, basename="restaurants")
+router.register("restaurant-tables", RestaurantTableViewSet, basename="restaurant-tables")
+router.register("menu-items", MenuItemViewSet, basename="menu-items")
+router.register("table-bookings", TableBookingViewSet, basename="table-bookings")
+
 urlpatterns = [
-    path("", RestaurantAPIView.as_view(), name="restaurants"),
-    path("<int:pk>/", RestaurantRetrieveUpdateDeleteAPIView.as_view(), name="restaurants"),
-    path("restaurant-tables/", RestaurantTableAPIView.as_view(), name="restaurant-tables"),
-    path("restaurant-tables/<int:pk>/", RestaurantTableRestaurantRetrieveUpdateDeleteAPIView.as_view(), name="restaurant-tables"),
-    path("menu-items/", MenuItemAPIView.as_view(), name="menu-items"),
-    path("menu-items/<int:pk>/", MenuItemRetrieveUpdateDeleteAPIView.as_view(), name="menu-items"),
+    path("", include(router.urls)),
 ]

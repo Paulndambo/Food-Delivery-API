@@ -1,7 +1,7 @@
 from django.db import models
 from apps.core.models import AbstractBaseModel
 from django.conf import settings
-from apps.core.constants import TABLE_STATUS_CHOICES
+from apps.core.constants import TABLE_STATUS_CHOICES, BOOKING_STATUS_CHOICES
 
 # Create your models here.
 class Restaurant(AbstractBaseModel):
@@ -35,3 +35,14 @@ class MenuItem(AbstractBaseModel):
 
     def __str__(self):
         return f"{self.name} from {self.restaurant.name}"
+
+
+class TableBooking(AbstractBaseModel):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    table = models.ForeignKey(RestaurantTable, on_delete=models.SET_NULL, null=True)
+    booked_from = models.DateTimeField()
+    booked_up_to = models.DateTimeField()
+    booking_status = models.CharField(max_length=255, choices=BOOKING_STATUS_CHOICES, default="active")
+
+    def __str__(self):
+        return f"{self.table.table_number} Booked By: {self.user.username} from {self.booked_from} up to {self.booked_up_to}"

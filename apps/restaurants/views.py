@@ -5,44 +5,30 @@ from rest_framework import generics, status
 from rest_framework.response import Response
 
 
-from apps.restaurants.models import Restaurant, RestaurantTable, MenuItem
+from apps.restaurants.models import Restaurant, RestaurantTable, MenuItem, TableBooking
 from apps.restaurants.serializers import (
     RestaurantSerializer, 
     RestaurantTableSerializer,
-    MenuItemSerializer
+    MenuItemSerializer,
+    TableBookingSerializer
 )
 
 # Create your views here.
-class RestaurantAPIView(generics.ListCreateAPIView):
-    queryset = Restaurant.objects.all()
-    serializer_class = RestaurantSerializer
-    #permission_classes = [IsAuthenticatedOrReadOnly]
-
-class RestaurantRetrieveUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
+class RestaurantViewSet(ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
 
-    lookup_field = "pk"
 
-class RestaurantTableAPIView(generics.ListCreateAPIView):
+class RestaurantTableViewSet(ModelViewSet):
     queryset = RestaurantTable.objects.all()
     serializer_class = RestaurantTableSerializer
 
 
-class RestaurantTableRestaurantRetrieveUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = RestaurantTable.objects.all()
-    serializer_class = RestaurantTableSerializer
-    
-    lookup_field = "pk"
-
-
-class MenuItemAPIView(generics.ListCreateAPIView):
+class MenuItemViewSet(ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
 
 
-class MenuItemRetrieveUpdateDeleteAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = MenuItem.objects.all()
-    serializer_class = MenuItemSerializer
-
-    lookup_field = "pk"
+class TableBookingViewSet(ModelViewSet):
+    queryset = TableBooking.objects.all()
+    serializer_class = TableBookingSerializer
