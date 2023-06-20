@@ -17,6 +17,7 @@ from apps.restaurants.serializers import (
 class RestaurantViewSet(ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
+    #permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class RestaurantTableViewSet(ModelViewSet):

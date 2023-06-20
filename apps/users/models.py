@@ -2,6 +2,7 @@ from django.db import models
 from apps.core.models import AbstractBaseModel
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
+from apps.core.constants import GENDER_CHOICES
 # Create your models here.
 
 ROLE_CHOICES = (
@@ -20,3 +21,14 @@ class User(AbstractUser, AbstractBaseModel):
 
     def __str__(self):
         return self.username
+    
+class Customer(AbstractBaseModel):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=255)
+    gender = models.CharField(max_length=255, choices=GENDER_CHOICES)
+    location = models.JSONField(null=True)
+    city = models.CharField(max_length=255, null=True)
+    country = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return self.user.first_name
