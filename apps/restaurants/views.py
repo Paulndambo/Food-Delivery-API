@@ -32,3 +32,18 @@ class MenuItemViewSet(ModelViewSet):
 class TableBookingViewSet(ModelViewSet):
     queryset = TableBooking.objects.all()
     serializer_class = TableBookingSerializer
+
+    def create(self, request, *args, **kwargs):
+        data = request.data
+        serializer = self.serializer_class(data=data)
+        if serializer.is_valid(raise_exception=True):
+
+            """Check if table is available for booking"""
+            table = serializer.validated_data["table"]
+            if table.status.lower() == "booked":
+                return Response({"failed": "The table you are trying to book is already booked" }, status=status.HTTP_400_BAD_REQUEST)
+            
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
