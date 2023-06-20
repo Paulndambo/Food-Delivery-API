@@ -12,6 +12,7 @@ class RestaurantTableSerializer(serializers.ModelSerializer):
         model = RestaurantTable
         fields = "__all__"
 
+
 class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
