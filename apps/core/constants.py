@@ -13,3 +13,16 @@ BOOKING_STATUS_CHOICES = (
     ("cancelled", "Cancelled"),
     ("fullfilled", "Full Filled"),
 )
+
+PAYMENT_STATUS_CHOICES = (
+    ("pending", "Pending"),
+    ("complete", "Complete"),
+    ("failed", "Failed"),
+)
+
+ORDER_STATUS = (
+    ("processing", "Processing"),
+    ("cancelled", "Cancelled"),
+    ("in_transit", "In Transit"),
+    ("delivered", "Delivered"),
+)
