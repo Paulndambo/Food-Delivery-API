@@ -23,9 +23,9 @@ class User(AbstractUser, AbstractBaseModel):
         return self.username
     
 class Customer(AbstractBaseModel):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    phone_number = models.CharField(max_length=255)
-    gender = models.CharField(max_length=255, choices=GENDER_CHOICES)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="customers")
+    phone_number = models.CharField(max_length=255, null=True)
+    gender = models.CharField(max_length=255, choices=GENDER_CHOICES, null=True)
     location = models.JSONField(null=True)
     city = models.CharField(max_length=255, null=True)
     country = models.CharField(max_length=255, null=True)

@@ -23,11 +23,13 @@ class RestaurantViewSet(ModelViewSet):
 class RestaurantTableViewSet(ModelViewSet):
     queryset = RestaurantTable.objects.all()
     serializer_class = RestaurantTableSerializer
+    
 
 
 class MenuItemViewSet(ModelViewSet):
     queryset = MenuItem.objects.all()
     serializer_class = MenuItemSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class TableBookingViewSet(ModelViewSet):
