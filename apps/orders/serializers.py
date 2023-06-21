@@ -7,16 +7,26 @@ class OrderSerializer(serializers.ModelSerializer):
     ordered_items = serializers.SerializerMethodField()
     order_cost = serializers.SerializerMethodField()
     customer_details = serializers.SerializerMethodField()
-
+    restaurant_name = serializers.SerializerMethodField()
 
     class Meta:
         model = Order
         fields = "__all__"
-        extra_kwargs = { "customer": {"write_only": True, },  "order_items": {"write_only": True, },}
+        extra_kwargs = { 
+            "customer": {"write_only": True, },  
+            "restaurant": {"write_only": True, },
+            "order_items": {"write_only": True, },
+        }
+
+    def get_restaurant_name(self, obj):
+        if obj.restaurant:
+            return obj.restaurant.name
+        else:
+            return None
 
 
     def get_ordered_items(self, obj):
-        return obj.items.values()
+        return obj.items.values('menu_item__name', 'quantity', 'unit_price')
     
     def get_order_cost(self, obj):
         return sum(obj.items.values_list("unit_price", flat=True))
