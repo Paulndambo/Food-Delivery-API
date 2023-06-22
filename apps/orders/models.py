@@ -13,7 +13,7 @@ class Order(AbstractBaseModel):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return f"{self.customer.user.first_name} ordered from {self.restaurant.name}"
+        return str(self.id)
     
 
 

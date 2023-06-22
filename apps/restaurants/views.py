@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import generics, status
 from rest_framework.response import Response
 
@@ -17,14 +17,14 @@ from apps.restaurants.serializers import (
 class RestaurantViewSet(ModelViewSet):
     queryset = Restaurant.objects.all()
     serializer_class = RestaurantSerializer
-    #permission_classes = [IsAuthenticatedOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
 
 class RestaurantTableViewSet(ModelViewSet):
     queryset = RestaurantTable.objects.all()
     serializer_class = RestaurantTableSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
     
-
 
 class MenuItemViewSet(ModelViewSet):
     queryset = MenuItem.objects.all()
@@ -35,18 +35,26 @@ class MenuItemViewSet(ModelViewSet):
 class TableBookingViewSet(ModelViewSet):
     queryset = TableBooking.objects.all()
     serializer_class = TableBookingSerializer
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         data = request.data
         serializer = self.serializer_class(data=data)
         if serializer.is_valid(raise_exception=True):
-
             """Check if table is available for booking"""
             table = serializer.validated_data["table"]
             if table.status.lower() == "booked":
                 return Response({"failed": "The table you are trying to book is already booked" }, status=status.HTTP_400_BAD_REQUEST)
-            
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.role.lower() == "customer":
+            return self.queryset.filter(user=user)
+        elif user.role.lower() == "restaurant":
+            return self.queryset.filter(table__restaurant__owner=user)
+        elif user.role.lower() in ["admin", "customer_service"] or user.is_superuser:
+            return self.queryset 
