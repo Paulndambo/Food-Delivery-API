@@ -26,6 +26,7 @@ class RestaurantTable(AbstractBaseModel):
     def __str__(self):
         return f"{self.table_number} is {self.status}"
     
+    
 class MenuItem(AbstractBaseModel):
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)

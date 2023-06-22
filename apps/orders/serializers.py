@@ -2,12 +2,14 @@ from django.db import transaction
 from rest_framework import serializers
 from apps.orders.models import Order, OrderItem
 from apps.restaurants.models import MenuItem
+from apps.users.models import Customer
 
 class OrderSerializer(serializers.ModelSerializer):
     ordered_items = serializers.SerializerMethodField()
     order_cost = serializers.SerializerMethodField()
     customer_details = serializers.SerializerMethodField()
     restaurant_name = serializers.SerializerMethodField()
+
 
     class Meta:
         model = Order
@@ -51,10 +53,15 @@ class OrderSerializer(serializers.ModelSerializer):
 
     @transaction.atomic
     def create(self, validated_data):
+        user = self.context["user"]
+        customer = Customer.objects.filter(user=user).first()
+        if not customer:
+            customer = Customer.objects.create(user=user)
+        
         try:
             order_items = validated_data["order_items"]
-            customer = validated_data["customer"]
-            restaurant = validated_data["restaurant"]
+            customer = customer #validated_data["customer"]
+            restaurant = validated_data.get("restaurant")
             order = Order.objects.create(customer=customer, restaurant=restaurant)
             order_item_objects = []
             for item in order_items:
