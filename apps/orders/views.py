@@ -1,10 +1,19 @@
 from django.shortcuts import render
+
+"""Rest Framework Imports"""
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
+"""Filter Backend Imports"""
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter, OrderingFilter
+
+"""Models Imports"""
 from apps.orders.models import Order, OrderItem
+
+"""Serializers Imports"""
 from apps.orders.serializers import OrderSerializer
 # Create your views here.
 class OrderViewSet(ModelViewSet):
@@ -17,6 +26,8 @@ class OrderViewSet(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    search_fields = ["payment_status", "order_status", "restaurant__name", "customer__user__email"]
 
     def get_serializer_context(self):
         return {"user": self.request.user}

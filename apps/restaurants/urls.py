@@ -8,7 +8,7 @@ from apps.restaurants.views import (
 )
 
 router = DefaultRouter()
-router.register("restaurants", RestaurantViewSet, basename="restaurants")
+router.register("", RestaurantViewSet, basename="restaurants")
 router.register("restaurant-tables", RestaurantTableViewSet, basename="restaurant-tables")
 router.register("menu-items", MenuItemViewSet, basename="menu-items")
 router.register("table-bookings", TableBookingViewSet, basename="table-bookings")

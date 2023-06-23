@@ -6,6 +6,10 @@
 1. Logically, since this is an online food delivery system it should be possible for a customer to order food from multiple restaurants at once, i saw it fit at this moment to only allow customer to order food from a single restaurant, meaning if a customer wanted to order from two different restaurants, they will have to place two separate orders.
 ```
 
+### Postam Collection
+The postman collection which you can import is included here on the code as json file, i.e,
+Food Delivery API.postman_collection.json
+
 ## How To Run 
 
 ### To make it possible for the person testing the work to be able to test the work without limitations, have provided multiple ways to run the application.

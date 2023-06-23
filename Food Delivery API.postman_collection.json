@@ -1,0 +1,328 @@
+{
+	"info": {
+		"_postman_id": "08e395c1-1958-4cd5-bdda-db25b1a45e53",
+		"name": "Food Delivery API",
+		"description": "To authenticate, add the bearer token on the authorization header,e.g.\n\n``` json\n{\n    \"Authorization\": Bearer {{token}}\n}\n\n```",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15561266",
+		"_collection_link": "https://red-trinity-320341.postman.co/workspace/6152561e-096d-44bf-883f-4c475fa88694/collection/15561266-08e395c1-1958-4cd5-bdda-db25b1a45e53?action=share&creator=15561266&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Restaurants List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"restaurants",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Restaurant",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDkwNjEwLCJpYXQiOjE2ODc0NzI2MTAsImp0aSI6ImNlNzY5NGU2NDA1NDQ0YjM5ZjhjNTg1ODMxNjBhMWU3IiwidXNlcl9pZCI6N30.dq0I1K8Q2uH0Aomx4HeryV0Pz6lFVc_rOAWJe9MDiGE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"owner\": 7,\n    \"name\": \"Test Restaurant 3\",\n    \"phone_number\": \"+254567887678\",\n    \"email\": \"test1@hello.com\",\n    \"location\": {\n        \"latitude\": 1.2345,\n        \"longitude\": 34.567\n    },\n    \"town\": \"Mombasa\",\n    \"country\": \"Kenya\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"restaurants",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"restaurant3\",\n    \"role\": \"restaurant\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email\": \"restaurant3@gmail.com\",\n    \"password\": \"TestPass@1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/users/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"customer2\",\n    \"password\": \"Customer@1234\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/users/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"users",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All Orders List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDkwODA5LCJpYXQiOjE2ODc0NzI4MDksImp0aSI6IjY1YmY1MjhhZThjOTQ1N2I4NjU1NWQ5ZGU2ODY0NjQzIiwidXNlcl9pZCI6MX0.2MoG-ucxlHpNoD9IEQa8lufiMYvX6KbiSTFJyAMEOAc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"orders",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer Orders List",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDkwOTg0LCJpYXQiOjE2ODc0NzI5ODQsImp0aSI6ImM3MjQ3NmVmN2VjMTQzMmI4YWQ0MDM3OTQxOTA3OTVjIiwidXNlcl9pZCI6M30.mQHXTb5vSLbM9ZJ3nuzxqHDK8QopK6MX3_f6BYBZmOQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"orders",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDkwOTg0LCJpYXQiOjE2ODc0NzI5ODQsImp0aSI6ImM3MjQ3NmVmN2VjMTQzMmI4YWQ0MDM3OTQxOTA3OTVjIiwidXNlcl9pZCI6M30.mQHXTb5vSLbM9ZJ3nuzxqHDK8QopK6MX3_f6BYBZmOQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"order_items\": [\n    {\n      \"menu_item\": 1,\n      \"quantity\": 1\n    },\n    {\n      \"menu_item\": 2,\n      \"quantity\": 1\n    }\n  ],\n  \"restaurant\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/orders/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"orders",
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Table Bookings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/table-bookings/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"table-bookings",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Restaurant Tables",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/restaurant-tables/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"restaurant-tables",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Menu Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/restaurants/menu-items/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"restaurants",
+						"menu-items",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
