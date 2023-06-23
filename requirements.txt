@@ -1,6 +1,7 @@
 django
 djangorestframework
 djangorestframework-simplejwt
+django-filter
 drf_yasg
 coreapi 
 pyyaml
