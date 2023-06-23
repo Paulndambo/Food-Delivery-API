@@ -43,7 +43,7 @@ docker run -p 8000:8000 food-delivery-backend
 ```
 #### 2.2 Using The Docker Image Published On Docker Hub Already
 ```
-docker run -p 8000:8000 40781998/food-delivery-backend:latest
+docker run -p 8000:8000 40781998/food-delivery-system-backend:latest
 ```
 ### 3. Using Kubernetes
 #### 3.1 Using Kubernetes (Builing the Images Locally)

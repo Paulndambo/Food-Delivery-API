@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: food-delivery-backend
-        image: <your docker username name>/food-delivery-backend:latest
+        image: <your docker username name>/food-delivery-system-backend:latest
         resources:
           limits:
             memory: "128Mi"
