@@ -5,6 +5,12 @@
 ```
 1. Logically, since this is an online food delivery system it should be possible for a customer to order food from multiple restaurants at once, i saw it fit at this moment to only allow customer to order food from a single restaurant, meaning if a customer wanted to order from two different restaurants, they will have to place two separate orders.
 ```
+## Note
+When you run the application, on the browser, it will be available at
+http://127.0.0.1:8000
+
+Swagger Docs are available at http://127.0.0.1:8000/docs
+
 
 ### Postam Collection
 The postman collection which you can import is included here on the code as json file, i.e,

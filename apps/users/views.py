@@ -22,7 +22,7 @@ class UserViewSet(ModelViewSet):
         if user.is_superuser:
             return self.queryset
         else:
-            return self.queryset.filter(user=user)
+            return self.queryset.filter(id=user.id)
         
 
 class CustomerViewSet(ModelViewSet):

@@ -5,3 +5,4 @@ django-filter
 drf_yasg
 coreapi 
 pyyaml
+pytest
