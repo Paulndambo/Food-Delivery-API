@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: food-delivery-backend
-        image: 40781998/food-delivery-backend:latest
+        image: 40781998/food-delivery-system-backend:latest
         resources:
           limits:
             memory: "128Mi"
