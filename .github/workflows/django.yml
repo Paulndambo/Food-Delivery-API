@@ -39,7 +39,7 @@ jobs:
       - name: Pytest 
         run: |
           pip install -r requirements.txt
-          #pytest -v -s
+
 
 
   build-docker-image:
